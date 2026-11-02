@@ -26,11 +26,11 @@ type User struct {
 }
 
 type RefreshToken struct {
-	ID        uint      `gorm:"primaryKey"`
-	UserID    uint      `gorm:"index; not null"`
-	User      User      `gorm:"constraint;CASCADE;OnDeleted"`
-	TokenHash string    `gorm:"size:64;uniqueIndex;not null"`
-	ExpiresAt time.Time `gorm:"not null"`
-	RevokeAt  *time.Time
+	ID        uint       `gorm:"primaryKey"`
+	UserID    uint       `gorm:"index; not null"`
+	User      User       `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	TokenHash string     `gorm:"size:64;uniqueIndex;not null"`
+	ExpiresAt time.Time  `gorm:"not null"`
+	RevokedAt *time.Time `json:"revoked_at"`
 	CreatedAt time.Time
 }

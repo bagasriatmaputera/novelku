@@ -30,7 +30,7 @@ func Load() *Config {
 		DBPort:      getEnv("DB_PORT", "5432"),
 		DBUser:      getEnv("DB_USER", "novelku"),
 		DBName:      getEnv("DB_NAME", "novelku"),
-		DBPassword:  getEnv("DAB_PASSWORD", "novelku_dev_password"),
+		DBPassword:  getEnv("DB_PASSWORD", "novelku_dev_password"),
 	}
 }
 

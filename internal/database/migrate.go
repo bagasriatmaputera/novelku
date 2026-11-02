@@ -9,11 +9,11 @@ func Migrate(db *gorm.DB) error {
 	return db.AutoMigrate(
 		&domain.User{},
 		&domain.RefreshToken{},
+		&domain.Genres{},
+		&domain.Novel{},
 		&domain.Chapter{},
 		&domain.Comment{},
 		&domain.Library{},
 		&domain.Like{},
-		&domain.Novel{},
-		&domain.Genres{},
 	)
 }
