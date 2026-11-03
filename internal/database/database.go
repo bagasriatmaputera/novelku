@@ -22,7 +22,8 @@ func Connect(cfg *config.Config) (*gorm.DB, error) {
 	}
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logLevel),
+		Logger:         logger.Default.LogMode(logLevel),
+		TranslateError: true,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("gagal koneksi database: %w", err)

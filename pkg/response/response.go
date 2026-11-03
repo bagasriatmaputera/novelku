@@ -7,8 +7,9 @@ import (
 )
 
 type ErrorBody struct {
-	Code    string `json:"code"`
-	Message string `json:"message"`
+	Code    string            `json:"code"`
+	Message string            `json:"message"`
+	Details map[string]string `json:"details,omitempty"`
 }
 
 type Meta struct {
@@ -64,4 +65,14 @@ func ErrorHandler(c *fiber.Ctx, err error) error {
 	}
 
 	return Error(c, status, "ERROR", message)
+}
+
+func ValidatationError(c *fiber.Ctx, details map[string]string) error {
+	return c.Status(fiber.StatusUnprocessableEntity).JSON(Body{
+		Error: &ErrorBody{
+			Code:    "VALIDATION ERROR",
+			Message: "Data yang dikirim tidak valid",
+			Details: details,
+		},
+	})
 }
